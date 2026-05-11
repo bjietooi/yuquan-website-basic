@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuquan Preschool — Healthy · Happy · Wise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal: #264653;
+            --teal-light: #2a9d8f;
+            --coral: #e8634a;
+            --amber: #f4a261;
+            --sand: #e9c46a;
+            --cream: #fdf6ee;
+            --cream-dark: #f5ebe0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+            background: var(--cream);
+            color: var(--teal);
+            overflow-x: hidden;
+        }
+
+        /* ============ NAVBAR ============ */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.3s, padding 0.3s, box-shadow 0.3s;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            padding: 10px 40px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--teal);
+        }
+
+        .nav-logo .logo-mark {
+            height: 36px;
+            width: auto;
+            background: white;
+            border-radius: 10px;
+            padding: 6px 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--teal);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--teal-light); }
+
+        .nav-cta {
+            padding: 10px 24px;
+            background: var(--teal);
+            color: white !important;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .nav-cta:hover { background: var(--teal-light); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px; height: 3px;
+            background: var(--teal);
+            border-radius: 2px;
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .slide-bg {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.45);
+            display: block;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 5;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero-content h1 {
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 .highlight {
+            background: linear-gradient(135deg, var(--sand), var(--amber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 560px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            padding: 16px 36px;
+            background: var(--teal-light);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover { background: var(--teal); }
+
+        .btn-outline {
+            padding: 16px 36px;
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.3s, border-color 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: white;
+        }
+
+        /* ============ SECTIONS ============ */
+        .section { padding: 100px 40px; position: relative; z-index: 1; }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 64px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 18px;
+            background: var(--teal-light);
+            color: white;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ============ ABOUT ============ */
+        .about { background: white; overflow: hidden; }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-images { position: relative; height: 520px; }
+
+        .about-img {
+            position: absolute;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        }
+
+        .about-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-img-1 { width: 300px; height: 380px; top: 0; left: 0; z-index: 2; }
+        .about-img-2 { width: 260px; height: 320px; bottom: 0; right: 0; z-index: 1; }
+
+        .about-floating-badge {
+            position: absolute;
+            bottom: 80px; left: 220px;
+            background: var(--coral);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 16px;
+            z-index: 3;
+            box-shadow: 0 8px 24px rgba(232,99,74,0.3);
+        }
+
+        .about-floating-badge .badge-number { font-size: 32px; font-weight: 900; }
+        .about-floating-badge .badge-text { font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+
+        .about-text h3 {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .about-text .chinese-subtitle {
+            font-size: 18px;
+            color: var(--coral);
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-values {
+            display: flex;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: var(--cream);
+            border-radius: 12px;
+        }
+
+        .value-item .value-emoji { font-size: 24px; }
+        .value-item span:last-child { font-weight: 800; font-size: 14px; }
+
+        /* ============ PROGRAMS (FLAT CARDS) ============ */
+        .programs { background: var(--cream); }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .program-card .card-color-top {
+            height: 5px;
+        }
+
+        .program-card:nth-child(1) .card-color-top { background: var(--teal-light); }
+        .program-card:nth-child(2) .card-color-top { background: var(--amber); }
+        .program-card:nth-child(3) .card-color-top { background: var(--coral); }
+
+        .program-card .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .program-card .card-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .program-card .card-body {
+            padding: 28px;
+        }
+
+        .program-card .card-age {
+            display: inline-block;
+            padding: 4px 14px;
+            background: var(--cream);
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--teal-light);
+            margin-bottom: 10px;
+        }
+
+        .program-card .card-body h3 {
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .program-card .card-body p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .program-card .card-link {
+            display: inline-block;
+            padding: 10px 24px;
+            background: var(--teal-light);
+            color: white;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .program-card .card-link:hover { background: var(--teal); }
+
+        /* ============ PHILOSOPHY ============ */
+        .philosophy {
+            background: var(--teal);
+            color: white;
+            text-align: center;
+        }
+
+        .philosophy-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .philosophy .chinese-motto {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--sand), var(--amber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .philosophy .english-motto {
+            font-size: 22px;
+            font-weight: 700;
+            opacity: 0.8;
+            margin-bottom: 32px;
+            letter-spacing: 4px;
+        }
+
+        .philosophy p {
+            font-size: 18px;
+            line-height: 1.8;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .philosophy-pillars {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-top: 48px;
+        }
+
+        .pillar {
+            text-align: center;
+            padding: 32px 24px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 20px;
+            width: 200px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .pillar .pillar-icon { font-size: 40px; margin-bottom: 16px; }
+        .pillar .pillar-cn { font-size: 24px; font-weight: 900; margin-bottom: 4px; }
+        .pillar .pillar-en { font-size: 14px; font-weight: 700; opacity: 0.7; letter-spacing: 1px; }
+
+        /* ============ ENRICHMENT ============ */
+        .enrichment { background: white; overflow: hidden; }
+
+        .enrichment-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .enrichment-item {
+            text-align: center;
+            padding: 32px 16px;
+            background: var(--cream);
+            border-radius: 20px;
+        }
+
+        .enrichment-item .enrich-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .enrichment-item h4 {
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        /* ============ GALLERY ============ */
+        .gallery { background: var(--cream); }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 250px);
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item:nth-child(1) { grid-column: span 2; }
+        .gallery-item:nth-child(4) { grid-column: span 2; }
+
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ============ STATS ============ */
+        .stats-bar {
+            background: linear-gradient(135deg, var(--teal-light), var(--teal));
+            padding: 60px 40px;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item { text-align: center; color: white; }
+        .stat-item .stat-number { font-size: 48px; font-weight: 900; }
+        .stat-item .stat-label {
+            font-size: 14px;
+            font-weight: 700;
+            opacity: 0.8;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        /* ============ TESTIMONIALS ============ */
+        .testimonials { background: white; }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            padding: 36px;
+            text-align: center;
+            background: var(--cream);
+            border-radius: 20px;
+        }
+
+        .testimonial-card .stars {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--sand);
+        }
+
+        .testimonial-card blockquote {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #444;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card .parent-name {
+            font-weight: 800;
+            font-size: 15px;
+            color: var(--teal);
+        }
+
+        .testimonial-card .parent-detail {
+            font-size: 13px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        /* ============ NEWSPAPER ============ */
+        .newspaper-section {
+            background: linear-gradient(135deg, var(--teal) 0%, #1a3a47 100%);
+            color: white;
+        }
+
+        .newspaper-intro {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+
+        .newspaper-intro h2 { font-size: 44px; font-weight: 900; margin-bottom: 12px; }
+        .newspaper-intro p { font-size: 16px; opacity: 0.7; line-height: 1.7; }
+
+        .newspaper-grid {
+            display: flex;
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: auto;
+            padding-bottom: 20px;
+        }
+
+        .newspaper-grid::-webkit-scrollbar { height: 6px; }
+        .newspaper-grid::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 3px; }
+        .newspaper-grid::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 3px; }
+
+        .newspaper-card {
+            min-width: 280px;
+            max-width: 280px;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .newspaper-card img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        .newspaper-card .newspaper-label { padding: 16px; background: white; }
+
+        .newspaper-card .newspaper-source {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--coral);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .newspaper-card .newspaper-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--teal);
+            line-height: 1.4;
+        }
+
+        .newspaper-scroll-hint {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 13px;
+            opacity: 0.5;
+            letter-spacing: 2px;
+        }
+
+        /* ============ FAQ ============ */
+        .faq { background: var(--cream); }
+
+        .faq-list { max-width: 800px; margin: 0 auto; }
+
+        .faq-item {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 24px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--teal);
+        }
+
+        .faq-toggle {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: background 0.3s, color 0.3s, transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-toggle {
+            background: var(--teal);
+            color: white;
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .faq-item.open .faq-answer { max-height: 300px; }
+
+        .faq-answer p {
+            padding: 0 28px 24px;
+            font-size: 15px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ============ CTA ============ */
+        .cta-section {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 600px; margin: 0 auto;
+        }
+
+        .cta-content h2 { font-size: 42px; font-weight: 900; margin-bottom: 16px; }
+
+        .cta-content p {
+            font-size: 16px;
+            opacity: 0.85;
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+
+        .cta-form {
+            display: flex;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .cta-form input {
+            flex: 1;
+            padding: 16px 24px;
+            border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .cta-form input::placeholder { color: rgba(255,255,255,0.5); }
+        .cta-form input:focus { border-color: rgba(255,255,255,0.5); }
+
+        .cta-form button {
+            padding: 16px 32px;
+            background: var(--sand);
+            color: var(--teal);
+            border: none;
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+            white-space: nowrap;
+        }
+
+        .cta-form button:hover { background: white; }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            background: var(--teal);
+            color: white;
+            padding: 80px 40px 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 48px;
+        }
+
+        .footer-brand .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand .footer-logo-img {
+            height: 40px;
+            width: auto;
+            background: white;
+            border-radius: 10px;
+            padding: 6px 12px;
+        }
+
+        .footer-brand p { font-size: 14px; opacity: 0.7; line-height: 1.7; max-width: 300px; }
+
+        .footer-col h4 {
+            font-size: 14px; font-weight: 800;
+            letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 20px; opacity: 0.6;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 10px; }
+
+        .footer-col a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-col a:hover { opacity: 1; }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            opacity: 0.5;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: var(--teal);
+            color: white;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 999;
+            box-shadow: 0 4px 16px rgba(38,70,83,0.3);
+        }
+
+        .back-to-top.visible { opacity: 1; }
+        .back-to-top:hover { background: var(--teal-light); }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .enrichment-grid { grid-template-columns: repeat(3, 1fr); }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 200px);
+            }
+            .gallery-item:nth-child(1),
+            .gallery-item:nth-child(4) { grid-column: span 1; }
+            .testimonials-grid { grid-template-columns: 1fr; max-width: 500px; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 12px 20px; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero-content h1 { font-size: 36px; }
+            .hero-content p { font-size: 15px; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-images { height: 350px; }
+            .programs-grid { grid-template-columns: 1fr; }
+            .enrichment-grid { grid-template-columns: repeat(2, 1fr); }
+            .philosophy-pillars { flex-direction: column; align-items: center; }
+            .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .gallery-grid .gallery-item { height: 200px; }
+            .stats-grid { flex-direction: column; gap: 30px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .section { padding: 60px 20px; }
+            .section-header h2 { font-size: 32px; }
+            .cta-form { flex-direction: column; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <img class="logo-mark" src="https://ik.imagekit.io/cr8hodb6q/yuquan/logo-Yuquan.png?updatedAt=1777262376085" alt="Yuquan">
+        </a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#curriculum">Curriculum</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#press">Press</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="enrichment.html" style="color:var(--coral);font-weight:800;">Enrichment →</a></li>
+            <li><a href="#enquiry" class="nav-cta">Enquire Now</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <img class="slide-bg" src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6331.jpeg" alt="Yuquan Kindergarten">
+        <div class="hero-content">
+            <div class="hero-badge">Bilingual Childcare Since 2005</div>
+            <h1>Where Every Child<br><span class="highlight">Blossoms Bilingually</span></h1>
+            <p>Healthy in body, happy in heart, and wise in mind — we prepare every child for a confident start in life.</p>
+            <div class="hero-buttons">
+                <a href="#enquiry" class="btn-primary">Book a Visit →</a>
+                <a href="#programs" class="btn-outline">Explore Programs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section about" id="about">
+        <div class="about-grid">
+            <div class="about-images">
+                <div class="about-img about-img-1">
+                    <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6331.jpeg" alt="Children learning">
+                </div>
+                <div class="about-img about-img-2">
+                    <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6654.jpeg" alt="Classroom activities">
+                </div>
+                <div class="about-floating-badge">
+                    <div class="badge-number">20+</div>
+                    <div class="badge-text">Years of Trust</div>
+                </div>
+            </div>
+            <div class="about-text">
+                <div class="section-tag">Our Story</div>
+                <h3>A Mother's Vision,<br>A Bilingual Mission</h3>
+                <p class="chinese-subtitle">育泉的故事</p>
+                <p>Founded in 2005, Yuquan Preschool was inspired by a mother's vision for her child. With extensive experience in early childhood education and Chinese language teaching, our founder recognised a gap — the lack of preschools able to truly develop strong bilingual foundations.</p>
+                <p>She established Yuquan as a place where bilingualism is not just an add-on, but a core philosophy, thoughtfully and systematically nurtured from the earliest years.</p>
+                <div class="about-values">
+                    <div class="value-item"><span class="value-emoji">💚</span><span>Healthy</span></div>
+                    <div class="value-item"><span class="value-emoji">😊</span><span>Happy</span></div>
+                    <div class="value-item"><span class="value-emoji">🧠</span><span>Wise</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAMS (FLAT CARDS) -->
+    <section class="section programs" id="programs">
+        <div class="section-header">
+            <div class="section-tag">Our Programs</div>
+            <h2>Growing Together,<br>Step by Step</h2>
+            <p>Carefully designed programmes for each developmental stage.</p>
+        </div>
+        <div class="programs-grid">
+            <div class="program-card">
+                <div class="card-color-top"></div>
+                <div class="card-img">
+                    <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6353.jpeg" alt="Playgroup">
+                </div>
+                <div class="card-body">
+                    <span class="card-age">18 months – 2 years</span>
+                    <h3>Playgroup</h3>
+                    <p>A gentle introduction to learning through play, building early social skills and bilingual exposure in a safe, nurturing environment. Children explore, create, and discover alongside caring teachers.</p>
+                    <a href="#enquiry" class="card-link">Enquire Now →</a>
+                </div>
+            </div>
+
+            <div class="program-card">
+                <div class="card-color-top"></div>
+                <div class="card-img">
+                    <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6654.jpeg" alt="Nursery">
+                </div>
+                <div class="card-body">
+                    <span class="card-age">3 – 4 years</span>
+                    <h3>Nursery</h3>
+                    <p>Building confidence and curiosity through our structured bilingual curriculum, creative play, and guided discovery activities. Your child will flourish in our supportive environment.</p>
+                    <a href="#enquiry" class="card-link">Enquire Now →</a>
+                </div>
+            </div>
+
+            <div class="program-card">
+                <div class="card-color-top"></div>
+                <div class="card-img">
+                    <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6683.jpeg" alt="Kindergarten">
+                </div>
+                <div class="card-body">
+                    <span class="card-age">5 – 6 years</span>
+                    <h3>Kindergarten</h3>
+                    <p>Preparing children for Primary 1 with strong bilingual literacy, numeracy, and essential life skills. A confident transition starts here.</p>
+                    <a href="#enquiry" class="card-link">Enquire Now →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section class="section philosophy" id="curriculum">
+        <div class="philosophy-content">
+            <div class="section-tag" style="background: rgba(255,255,255,0.15);">Our Philosophy</div>
+            <div class="chinese-motto">健康 · 快乐 · 睿智</div>
+            <div class="english-motto">Healthy · Happy · Wise</div>
+            <p>健康为本，快乐为桥，睿智为远。Healthy in body, happy in heart, and wise in mind — we prepare every child for a confident start in life.</p>
+            <div class="philosophy-pillars">
+                <div class="pillar">
+                    <div class="pillar-icon">💪</div>
+                    <div class="pillar-cn">健康</div>
+                    <div class="pillar-en">Healthy</div>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">🌈</div>
+                    <div class="pillar-cn">快乐</div>
+                    <div class="pillar-en">Happy</div>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">📚</div>
+                    <div class="pillar-cn">睿智</div>
+                    <div class="pillar-en">Wise</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENRICHMENT -->
+    <section class="section enrichment" id="enrichment">
+        <div class="section-header">
+            <div class="section-tag">Enrichment</div>
+            <h2>Beyond the Classroom</h2>
+            <p>A wide range of enrichment programmes included at no additional charge.</p>
+        </div>
+        <div class="enrichment-grid">
+            <div class="enrichment-item"><span class="enrich-icon">🏓</span><h4>Table Tennis</h4></div>
+            <div class="enrichment-item"><span class="enrich-icon">🍵</span><h4>Tea Appreciation</h4></div>
+            <div class="enrichment-item"><span class="enrich-icon">🎵</span><h4>Melodica</h4></div>
+            <div class="enrichment-item"><span class="enrich-icon">🎨</span><h4>Chinese Painting</h4></div>
+            <div class="enrichment-item"><span class="enrich-icon">✍️</span><h4>Calligraphy</h4></div>
+            <div class="enrichment-item"><span class="enrich-icon">🤸</span><h4>Physical Play</h4></div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item"><div class="stat-number">20+</div><div class="stat-label">Years of Excellence</div></div>
+            <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Happy Graduates</div></div>
+            <div class="stat-item"><div class="stat-number">6+</div><div class="stat-label">Enrichment Programs</div></div>
+            <div class="stat-item"><div class="stat-number">2</div><div class="stat-label">Languages Mastered</div></div>
+        </div>
+    </div>
+
+    <!-- GALLERY -->
+    <section class="section gallery" id="gallery">
+        <div class="section-header">
+            <div class="section-tag">Gallery</div>
+            <h2>A Glimpse Into Our World</h2>
+            <p>See our children learning, exploring, and growing every day.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6331.jpeg" alt="Classroom Activities">
+            </div>
+            <div class="gallery-item">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6353.jpeg" alt="Outdoor Fun">
+            </div>
+            <div class="gallery-item">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6654.jpeg" alt="Art Time">
+            </div>
+            <div class="gallery-item">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6683.jpeg" alt="Chinese Culture">
+            </div>
+            <div class="gallery-item">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6331.jpeg" alt="Sports">
+            </div>
+            <div class="gallery-item">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6353.jpeg" alt="Graduation">
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section testimonials">
+        <div class="section-header">
+            <div class="section-tag">Testimonials</div>
+            <h2>Loved by Parents</h2>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <blockquote>"We were amazed at how quickly our daughter picked up Mandarin. The bilingual environment at Yuquan is truly immersive."</blockquote>
+                <div class="parent-name">Mrs. Tan</div>
+                <div class="parent-detail">Parent of K2 student</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <blockquote>"The enrichment programmes are a wonderful bonus. My son loves calligraphy and table tennis — all included!"</blockquote>
+                <div class="parent-name">Mr. & Mrs. Lee</div>
+                <div class="parent-detail">Parents of Nursery student</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <blockquote>"The teachers are incredibly warm and dedicated. My child looks forward to school every single day."</blockquote>
+                <div class="parent-name">Mrs. Wong</div>
+                <div class="parent-detail">Parent of Playgroup student</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSPAPER / PRESS -->
+    <section class="section newspaper-section" id="press">
+        <div class="newspaper-intro">
+            <div class="section-tag" style="background:rgba(255,255,255,0.15);">As Featured In</div>
+            <h2>Press Coverage</h2>
+            <p>Yuquan's bilingual approach has been recognised and featured in Shin Min Daily News.</p>
+        </div>
+        <div class="newspaper-grid">
+            <div class="newspaper-card">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/testimonial/Shin%20Min%2003-11-11.TIF" alt="Shin Min Daily">
+                <div class="newspaper-label">
+                    <div class="newspaper-source">Shin Min Daily News</div>
+                    <div class="newspaper-title">Featured Article · 2011</div>
+                </div>
+            </div>
+            <div class="newspaper-card">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/testimonial/Shin%20Min%2004-5-17.jpg" alt="Shin Min Daily">
+                <div class="newspaper-label">
+                    <div class="newspaper-source">Shin Min Daily News</div>
+                    <div class="newspaper-title">Bilingual Education Feature</div>
+                </div>
+            </div>
+            <div class="newspaper-card">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/testimonial/Shin%20Min%2004-5-21.jpg" alt="Shin Min Daily">
+                <div class="newspaper-label">
+                    <div class="newspaper-source">Shin Min Daily News</div>
+                    <div class="newspaper-title">Preschool Excellence</div>
+                </div>
+            </div>
+            <div class="newspaper-card">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/testimonial/Shin%20Min%2004-5-20.jpg" alt="Shin Min Daily">
+                <div class="newspaper-label">
+                    <div class="newspaper-source">Shin Min Daily News</div>
+                    <div class="newspaper-title">Language Education</div>
+                </div>
+            </div>
+            <div class="newspaper-card">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/testimonial/Shin%20Min%2004-5-19.jpg" alt="Shin Min Daily">
+                <div class="newspaper-label">
+                    <div class="newspaper-source">Shin Min Daily News</div>
+                    <div class="newspaper-title">Chinese Curriculum</div>
+                </div>
+            </div>
+            <div class="newspaper-card">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/testimonial/Shin%20Min%2004-5-18.jpg" alt="Shin Min Daily">
+                <div class="newspaper-label">
+                    <div class="newspaper-source">Shin Min Daily News</div>
+                    <div class="newspaper-title">Early Childhood</div>
+                </div>
+            </div>
+            <div class="newspaper-card">
+                <img src="https://ik.imagekit.io/cr8hodb6q/yuquan/testimonial/ShinMin%2004-11-17a.jpg" alt="Shin Min Daily">
+                <div class="newspaper-label">
+                    <div class="newspaper-source">Shin Min Daily News</div>
+                    <div class="newspaper-title">Community Recognition</div>
+                </div>
+            </div>
+        </div>
+        <div class="newspaper-scroll-hint">← SCROLL TO SEE MORE →</div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq" id="faq">
+        <div class="section-header">
+            <div class="section-tag">FAQ</div>
+            <h2>Common Questions</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)"><span>What ages do you accept?</span><div class="faq-toggle">+</div></div>
+                <div class="faq-answer"><p>We welcome children from 18 months to 6 years old. Our programmes are designed for each developmental stage — Playgroup, Nursery, and Kindergarten.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)"><span>What makes Yuquan truly bilingual?</span><div class="faq-toggle">+</div></div>
+                <div class="faq-answer"><p>We have our own proprietary Chinese curriculum and structured teaching system. Children build strong foundations in both Chinese and English through immersive, daily bilingual exposure.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)"><span>Are enrichment programmes included?</span><div class="faq-toggle">+</div></div>
+                <div class="faq-answer"><p>Yes! We offer table tennis, tea appreciation, melodica, Chinese painting, and calligraphy — all at no additional charge.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)"><span>How can I visit the centre?</span><div class="faq-toggle">+</div></div>
+                <div class="faq-answer"><p>Simply fill in the enquiry form below or contact us directly. We'd love to show you around and introduce you to our learning environment.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)"><span>What is your operating schedule?</span><div class="faq-toggle">+</div></div>
+                <div class="faq-answer"><p>We operate on weekdays with both half-day and full-day programmes. Contact us for detailed schedules and availability.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section" id="enquiry">
+        <div class="cta-content">
+            <h2>Ready to Begin?</h2>
+            <p>Take the first step toward giving your child a confident, bilingual start. Enquire today or book a visit.</p>
+            <div class="cta-form">
+                <input type="email" placeholder="Enter your email...">
+                <button type="button">Enquire Now →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img class="footer-logo-img" src="https://ik.imagekit.io/cr8hodb6q/yuquan/logo-Yuquan.png?updatedAt=1777262376085" alt="Yuquan">
+                </div>
+                <p>Healthy · Happy · Wise — nurturing bilingual learners since 2005.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Programs</h4>
+                <ul>
+                    <li><a href="#">Playgroup</a></li>
+                    <li><a href="#">Nursery</a></li>
+                    <li><a href="#">Kindergarten</a></li>
+                    <li><a href="#">Enrichment</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Philosophy</a></li>
+                    <li><a href="#">Curriculum</a></li>
+                    <li><a href="#">Happenings</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#">yuquan.com.sg</a></li>
+                    <li><a href="#">Enquire Now</a></li>
+                    <li><a href="#">Locations</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2025 Yuquan Preschool. All rights reserved.</span>
+            <span><a href="index.html" style="color:white;text-decoration:none;">← Back to Home</a></span>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        // FAQ toggle
+        function toggleFaq(el) {
+            el.parentElement.classList.toggle('open');
+        }
+
+        // Navbar scroll state + back to top
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 80);
+            document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+        });
+    </script>
+</body>
+</html>

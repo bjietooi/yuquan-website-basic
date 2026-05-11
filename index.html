@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuquan — Healthy · Happy · Wise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            background: #111;
+        }
+
+        .splash {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .panel {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            transition: flex 0.5s ease;
+        }
+
+        .panel:hover { flex: 1.3; }
+        .splash:has(.panel-left:hover) .panel-right { flex: 0.7; }
+        .splash:has(.panel-right:hover) .panel-left { flex: 0.7; }
+
+        .panel-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(100%) brightness(0.45);
+            transition: filter 0.5s ease;
+        }
+
+        .panel:hover .panel-bg {
+            filter: grayscale(0%) brightness(0.5);
+        }
+
+        .panel-left .panel-bg {
+            background-image: url('https://ik.imagekit.io/cr8hodb6q/yuquan/kindergarten/RYC_6331.jpeg');
+        }
+
+        .panel-right .panel-bg {
+            background-image: url('https://ik.imagekit.io/cr8hodb6q/yuquan/tuition/DSC09682.JPG');
+        }
+
+        .panel-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 40px;
+        }
+
+        .panel-content h2 {
+            font-size: 34px;
+            font-weight: 900;
+            margin-bottom: 6px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+        }
+
+        .panel-content .panel-chinese {
+            font-size: 18px;
+            opacity: 0.7;
+            margin-bottom: 16px;
+        }
+
+        .panel-content p {
+            font-size: 14px;
+            opacity: 0.6;
+            max-width: 280px;
+            line-height: 1.7;
+        }
+
+        .enter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 28px;
+            padding: 12px 32px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.12);
+            border: 1.5px solid rgba(255,255,255,0.25);
+            color: white;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .enter-btn:hover {
+            background: rgba(255,255,255,0.25);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        /* Center logo */
+        .splash-center {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .splash-center .logo-img {
+            width: 200px;
+            height: auto;
+            display: block;
+            margin: 0 auto 20px;
+            filter: brightness(0) invert(1);
+        }
+
+        .splash-center .tagline {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .splash-center .tagline-divider {
+            width: 40px;
+            height: 1px;
+            background: rgba(255,255,255,0.2);
+            margin: 14px auto;
+        }
+
+        .splash-center .school-name {
+            font-size: 11px;
+            color: rgba(255,255,255,0.35);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Bottom bar */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0; left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.35);
+            padding: 10px 0;
+            z-index: 8;
+            text-align: center;
+        }
+
+        .bottom-bar span {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.25);
+            padding: 0 16px;
+        }
+
+        @media (max-width: 768px) {
+            .splash { flex-direction: column; }
+            .splash-center .logo-img { width: 130px; }
+            .splash-center .tagline { font-size: 11px; letter-spacing: 4px; }
+            .panel-content h2 { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="splash">
+        <div class="panel panel-left" onclick="window.location.href='preschool.html'">
+            <div class="panel-bg"></div>
+            <div class="panel-content">
+                <h2>Preschool</h2>
+                <p class="panel-chinese">幼儿园</p>
+                <p>Ages 18 months to 6 years. Our bilingual curriculum nurtures confident, curious learners.</p>
+                <a class="enter-btn" href="preschool.html">Explore →</a>
+            </div>
+        </div>
+
+        <div class="panel panel-right" onclick="window.location.href='enrichment.html'">
+            <div class="panel-bg"></div>
+            <div class="panel-content">
+                <h2>Enrichment</h2>
+                <p class="panel-chinese">课程补习</p>
+                <p>Structured Chinese & English enrichment programmes for children and adults alike.</p>
+                <a class="enter-btn" href="enrichment.html">Explore →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="splash-center">
+        <img class="logo-img" src="https://ik.imagekit.io/cr8hodb6q/yuquan/logo-Yuquan.png?updatedAt=1777262376085" alt="Yuquan">
+        <div class="tagline-divider"></div>
+        <div class="tagline">Healthy · Happy · Wise</div>
+        <div class="tagline-divider"></div>
+        <div class="school-name">Yuquan Language School</div>
+    </div>
+
+    <div class="bottom-bar">
+        <span>健康 Healthy</span>
+        <span>快乐 Happy</span>
+        <span>睿智 Wise</span>
+        <span>Since 2005</span>
+    </div>
+
+</body>
+</html>
